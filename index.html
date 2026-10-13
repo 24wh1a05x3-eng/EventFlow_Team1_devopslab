@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventFlow | College Events</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">E</span> EventFlow</a>
+    <nav><a href="#events">Events</a><a href="#add-event">Add Event</a><a href="#about">About</a></nav>
+    <a class="nav-button" href="#add-event">+ Add Event</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR CAMPUS. YOUR MOMENT.</p>
+        <h1>Make college life<br><span>an event to remember.</span></h1>
+        <p class="hero-text">Find exciting campus events, discover new interests, and save your spot in just a few clicks.</p>
+        <a class="primary-button" href="#events">Explore upcoming events <span>↗</span></a>
+        <div class="hero-stats">
+          <div><strong>12+</strong><small>Campus events</small></div>
+          <div><strong>500+</strong><small>Student community</small></div>
+          <div><strong>One place</strong><small>All the action</small></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Colorful illustration of a campus event">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-card">
+          <div class="art-spark">✦</div>
+          <div class="art-label">CAMPUS HIGHLIGHT</div>
+          <div class="art-title">Create<br>something<br><em>amazing.</em></div>
+          <div class="art-bottom"><span>IDEAS · PEOPLE · FUN</span><span>✳</span></div>
+        </div>
+        <div class="floating-tag tag-top">✦ Discover</div>
+        <div class="floating-tag tag-bottom">♡ Get involved</div>
+        <div class="floating-dot dot-one"></div><div class="floating-dot dot-two"></div>
+      </div>
+    </section>
+
+    <section class="events-section" id="events">
+      <div class="section-heading">
+        <div><p class="eyebrow">WHAT'S HAPPENING</p><h2>Find your next <span>favorite.</span></h2></div>
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search events..." aria-label="Search events"></label>
+      </div>
+      <div class="filters" aria-label="Filter events">
+        <button class="filter active" data-category="All">All events</button>
+        <button class="filter" data-category="Technical">Technical</button>
+        <button class="filter" data-category="Cultural">Cultural</button>
+        <button class="filter" data-category="Workshop">Workshops</button>
+        <button class="filter" data-category="Sports">Sports</button>
+      </div>
+      <div class="event-grid" id="eventGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>No events found. Try another search.</p>
+    </section>
+
+    <section class="add-event-section" id="add-event">
+      <div class="section-heading add-event-heading">
+        <div><p class="eyebrow">ORGANIZE SOMETHING GREAT</p><h2>Add a new <span>event.</span></h2><p class="add-event-intro">Fill in the details below to add an event to the list.</p></div>
+      </div>
+      <form id="addEventForm" class="add-event-form">
+        <div class="add-event-fields">
+          <div><label for="newEventTitle">Event name</label><input id="newEventTitle" name="title" required maxlength="80" placeholder="e.g. Web Development Workshop"></div>
+          <div><label for="newEventCategory">Category</label><select id="newEventCategory" name="category" required><option value="">Choose category</option><option>Technical</option><option>Cultural</option><option>Workshop</option><option>Sports</option></select></div>
+          <div><label for="newEventDate">Date</label><input id="newEventDate" name="date" type="date" required></div>
+          <div><label for="newEventTime">Time</label><input id="newEventTime" name="time" type="time" required></div>
+          <div><label for="newEventLocation">Venue</label><input id="newEventLocation" name="location" required maxlength="100" placeholder="e.g. Seminar Hall"></div>
+          <div class="wide-field"><label for="newEventDescription">Description</label><textarea id="newEventDescription" name="description" rows="3" required maxlength="300" placeholder="Tell students what the event is about"></textarea></div>
+        </div>
+        <button class="primary-button" type="submit">Add event to list <span>↗</span></button>
+        <p class="form-note">Demo project: events are saved in this browser only. This page does not have admin login or a shared database.</p>
+      </form>
+    </section>
+
+    <section class="cta" id="about">
+      <div class="cta-symbol">✳</div>
+      <div><p class="eyebrow">YOUR CAMPUS IS FULL OF POSSIBILITIES</p><h2>Show up. Join in. <span>Stand out.</span></h2><p>Every event is a chance to learn something, meet someone, or make a memory.</p></div>
+      <a class="primary-button" href="#events">Find an event <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <a class="brand" href="#"><span class="brand-mark">E</span> EventFlow</a>
+    <p>Made for campus moments. <span>© <span id="year"></span> EventFlow</span></p>
+  </footer>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close registration form">×</button>
+      <p class="eyebrow">SAVE YOUR SPOT</p>
+      <h2 id="modalTitle">Register for event</h2>
+      <p class="modal-event" id="modalEventName"></p>
+      <form id="registrationForm">
+        <label for="studentName">Your name</label>
+        <input id="studentName" name="studentName" required maxlength="70" placeholder="Enter your full name">
+        <label for="studentEmail">College email</label>
+        <input id="studentEmail" name="studentEmail" type="email" required maxlength="120" placeholder="you@example.com">
+        <label for="studentYear">Year of study</label>
+        <select id="studentYear" name="studentYear" required>
+          <option value="">Choose your year</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option>
+        </select>
+        <button class="primary-button submit-button" type="submit">Confirm registration <span>↗</span></button>
+      </form>
+      <p class="form-note">Demo project: registrations are saved only in this browser.</p>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
